@@ -1,0 +1,42 @@
+{%extends 'base.html'%}{%block title%}Adopt a Pet! {%endblock%} {%block
+content%}
+<div class="container">
+  <h1 class="display-3">Adopt a Pet!</h1>
+  <h2>Pets Who are Looking for a Home</h2>
+
+  <div class="d-flex align-content-between flex-wrap mt-2">
+    {%for pet in pets%} {%if pet.availible==True%}
+    <div class="ms-3">
+      <div class="pe-3" style="width: 200px; height: 200px">
+        <img
+          style="width: 200px; height: 200px"
+          src="{{pet.photo_url}}"
+          alt=""
+          class="img-thumbnail"
+        />
+      </div>
+      <p><a href="/{{pet.id}}">{{pet.name}}</a> is looking for a new home</p>
+    </div>
+    {%endif%} {%endfor%}
+  </div>
+
+  <h2>Pets Who Have Found a Home</h2>
+  <div class="d-flex align-content-between flex-wrap mt-2">
+    {%for pet in pets%} {%if pet.availible==False%}
+    <div class="ms-3">
+      <div class="pe-3" style="width: 200px; height: 200px">
+        <img
+          style="width: 200px; height: 200px"
+          src="{{pet.photo_url}}"
+          alt=""
+          class="img-thumbnail"
+        />
+      </div>
+      <p><a href="/{{pet.id}}">{{pet.name}}</a> has found a new home</p>
+    </div>
+    {%endif%} {%endfor%}
+  </div>
+
+  <a href="/add" class="btn btn-success">Add a Pet</a>
+</div>
+{%endblock%}
